@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>replit</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+	<div class="row">
+		<form class="col s12">
+			<div class="row">
+
+				<div class="input-field col s6 m12">
+					<input  name="cep" onmouseout="buscaCep()" placeholder="Digite seu cep" id="cep" type="text" class="validate">
+					<label for="cep">Cep</label>
+				</div>
+
+				<div class="input-field col s6 m12">
+					<input  name="rua" id="logradouro" placeholder="Rua" type="text" class="validate">
+					<label class="active" for="logradouro">Logradouro</label>
+				</div>
+
+				<div class="input-field col s6 m12">
+					<input name="bairro"  placeholder="Bairro" id="bairro" type="text" class="validate ">
+					<label class="active" for="bairro">Bairro</label>
+				</div>
+
+			</div>
+	<button class="btn">
+		Enviar
+		<i class="material-icons right">send</i>
+	</button>
+		</form>
+	</div>
+
+
+	<script src="script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
