@@ -6,102 +6,142 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Busca CEP</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
+	<!-- FONTES  -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Metal&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+	<!-- CSS MATERIALIZE -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!-- LINK DOS ICONES -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#!" class="brand-logo">Deli Doces</a>
-			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="sass.html">Busca cep</a></li>
-				<li><a href="badges.html">Busca Rua</a></li>
-			</ul>
-		</div>
-	</nav>
+
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#!" class="brand-logo">Deli Doces</a>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="sass.html">Busca cep</a></li>
+					<li><a href="badges.html">Busca Rua</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 
 	<ul class="sidenav" id="mobile-demo">
 		<li><a href="sass.html">Busca cep</a></li>
 		<li><a href="badges.html">Busca Rua</a></li>
 	</ul>
-	<div class="container">
-	<br>
-		<div class="row">
-			<div class="col s12">
-				<!-- Botões de seleção da rua e do cep -->
-				<ul class="tabs">
-					<li class="tab col s3"><a class="active" href="#cep-tab">CEP</a></li>
-					<li class="tab col s3"><a  href="#rua-tab">RUA</a></li>
-				</ul>
-			</div>
-
-			<!-- ESTRUTURA DE BUSCA DO CEP -->
-			<div id="cep-tab" class="col s12">
-				<h5 class="center">Busca CEP</h5>
-				<div class="row">
-					<form id="form-cep" class="col s12">
-						<div class="row">
-
-							<div class="input-field col s6 m12">
-								<input name="cep" placeholder="Digite seu cep" id="cep" type="text" class="validate">
-								<label for="cep">Cep</label>
-							</div>
-
-							<div class="input-field col s6 m12">
-								<button onclick="buscaCep('cep')" class="btn">
-									Enviar
-									<i class="material-icons right">send</i>
-								</button>
-							</div>
-
-						</div>
-
-					</form>
+	<div class="progress">
+		<div class="indeterminate"></div>
+	</div>
+	<div>
+		<div class="container">
+			<br>
+			<div class="row">
+				<div class="col s12">
+					<!-- Botões de seleção da rua, cep e log -->
+					<ul class="tabs">
+						<li onclick="clearTab()" class="tab col s3"><a class="active" href="#cep-tab">CEP</a></li>
+						<li onclick="clearTab()" class="tab col s3"><a href="#rua-tab">RUA</a></li>
+						<li onclick="clearTab();mountLog()" class="tab col s3"><a href="#log-tab">LOG</a></li>
+					</ul>
 				</div>
-			</div>
-			<!--  ESTRUTURA DA RUA -->
-			<div id="rua-tab" class="col s12">
-				<h5 class="center">Busca Rua</h5>
-				<div class="row">
-					<form id="form-rua" class="col s12">
-						<div class="row">
 
-							<div class="input-field col s6 m12">
-								<input name="uf" placeholder="Digite seu estado" id="uf" type="text" class="validate">
-								<label for="uf">UF</label>
+
+				<!-- ESTRUTURA DE BUSCA DO CEP -->
+				<div id="cep-tab" class="col s12">
+					<h5 class="center">Busca CEP</h5>
+					<div class="row">
+						<form id="form-cep" class="col s12">
+							<div class="row">
+
+								<div class="input-field col s6 m12">
+									<input name="cep" placeholder="Digite seu cep" id="cep" type="text" class="validate">
+									<label for="cep">Cep</label>
+								</div>
+
+								<div class="input-field col s6 m12">
+									<button onclick="buscaCep('cep')" class="btn">
+										Enviar
+									</button>
+								</div>
+
 							</div>
 
-							<div class="input-field col s6 m12">
-								<input name="cidade" id="cidade" placeholder="Cidade" type="text" class="validate">
-								<label class="active" for="cidade">Cidade</label>
+						</form>
+					</div>
+				</div>
+				<!-- ESTRUTURA DA RUA -->
+				<div id="rua-tab" class="col s12">
+					<h5 class="center">Busca Rua</h5>
+					<div class="row">
+						<form id="form-rua" class="col s12">
+							<div class="row">
+
+								<div class="input-field col s12">
+									<select onchange="pegarCidades()" id="ufs-list">
+
+									</select>
+									<label>Estados</label>
+								</div>
+
+								<div class="input-field col s6 m12">
+									<select id="cidades-list">
+
+									</select>
+									<label>Cidades</label>
+									<!-- <input name="cidade" id="cidade" placeholder="Cidade" type="text" class="validate">
+								<label class="active" for="cidade">Cidade</label> -->
+								</div>
+
+								<div class="input-field col s6 m12">
+									<input name="rua" placeholder="Rua" id="rua" type="text" class="validate ">
+									<label class="active" for="rua">Rua</label>
+								</div>
+
+								<div class="input-field  col s6 m12">
+									<button onclick="buscaCep('rua')" class="btn">
+										Enviar
+									</button>
+								</div>
+
 							</div>
 
-							<div class="input-field col s6 m12">
-								<input name="rua" placeholder="Rua" id="rua" type="text" class="validate ">
-								<label class="active" for="rua">Rua</label>
-							</div>
-
-							<div class="input-field col s6 m12">
-								<button onclick="buscaCep('rua')" class="btn">
-									Enviar
-									<i class="material-icons right">send</i>
-								</button>
-							</div>
-
-						</div>
-
-					</form>
+						</form>
+					</div>
+				</div>
+				<!-- ESTRUTURA DO LOG -->
+				<div id="log-tab" class="col s12">
+					<h5 class="center">Log de buscas</h5>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="container">
+
+
+
 		<ul class="collection" id="resultado"></ul>
 	</div>
 
+
+
+	<!-- JQUERY -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script src="script.js"></script>
+	<!-- SCRIPT MATERIALIZE -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<!-- INPUTMASK -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"
+		integrity="sha512-efAcjYoYT0sXxQRtxGY37CKYmqsFVOIwMApaEbrxJr4RwqVVGw8o+Lfh/+59TU07+suZn1BWq4fDl5fdgyCNkw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- SCRIPT LOCAL -->
+	<script src="script.js"></script>
 </body>
 
 </html>
