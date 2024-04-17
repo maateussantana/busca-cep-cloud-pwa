@@ -55,3 +55,10 @@ h5 {
 .container {
 	background-color: white;
 }
+
+.item-log{
+	display: flex;
+	gap: 7px;
+	justify-content: start;
+	flex-direction: row-reverse;
+}

@@ -24,16 +24,17 @@ function buscaCep(tipo) {
 		saveLog(log)
 		url = `https://viacep.com.br/ws/${cep}/json/`;
 	} else {
-		const uf = $('#ufs-list').val() // USANDO JQUERY $ PARA PEGAR VALOR DA UF
+		const siglaUf = $('#ufs-list').val() // USANDO JQUERY $ PARA PEGAR SIGLA DA UF
+		const nomeUf = $("input.select-dropdown").val() // USANDO JQUERY $ PARA PEGAR NOME DA UF
 		const cidade = $('#cidades-list').val() // USANDO JQUERY $ PARA PEGAR VALOR DA CIDADE
 		const rua = $('#rua').val() // JS PURO VANILLA PEGAR RUA
 
 		let log = {
 			date: getDate(),
-			log: uf + '-' + cidade + '-' + rua,
+			log: nomeUf + '-' + siglaUf + '-' + cidade + '-' + rua,
 		}
 		saveLog(log)
-		url = `https://viacep.com.br/ws/${uf}/${cidade}/${rua}/json/`
+		url = `https://viacep.com.br/ws/${siglaUf}/${cidade}/${rua}/json/`
 	}
 
 	fetch(url)
@@ -81,7 +82,7 @@ function mountLog() {
 	let logs = JSON.parse(localStorage.getItem('logs'))
 	let logsList = ""
 	for (let log of logs) {
-		logsList += `<li class="collection-item">${log.date} buscou ${log.log}</li>`
+		logsList += `<li class="collection-item item-log">${log.date} buscou ${log.log}<a href="#"><i style="color:#ee6e73" onclick="logLoad('${log.log.split('buscou ')}')" class="material-icons">visibility</i></a></li>`
 	}
 	$("#resultado").html(logsList)
 }
@@ -89,16 +90,54 @@ function mountLog() {
 function getDate() {
 	const dataAtual = new Date();
 	const options = {
-		weekday: 'long',
+		weekday: 'short',
 		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
 		hour: 'numeric',
 		minute: 'numeric',
 		second: 'numeric'
 	};
 	const dataFormatada = dataAtual.toLocaleString('pt-BR', options);
 	return dataFormatada
+}
+
+function logLoad(log) {
+	const logs = log.split("-")
+	if (logs.length > 2) {
+		console.log('tem', logs[0])
+		setTimeout(() => {
+			$($("div.select-wrapper ul")[0]).find("li").each(function() {
+						var spanText = $(this).find("span").text();
+						if (spanText == logs[0]) {
+								$(this).click();
+								return false; // Para sair do loop após o clique
+						}
+				});
+				$('#rua').val(logs[3]); // Define o valor do campo de entrada 'rua'
+		}, 300);
+
+		setTimeout(() => {
+			document
+				.querySelectorAll("div.select-wrapper")[1]
+				.querySelector("ul")
+				.querySelectorAll("li").forEach((a) => {
+					if (a.querySelector("span").innerText == logs[2]) {
+						$(a).click()
+						buscaCep('rua')
+					}
+				})
+		}, 400)
+		$('ul.tabs > li > a')[1].click()
+	} else {
+		setTimeout(() => {
+			$('#cep').val(log)
+			buscaCep('cep')
+		}, 200)
+		console.log('não tem', log)
+
+		$('ul.tabs > li > a')[0].click()
+	}
 }
 
 
