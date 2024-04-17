@@ -45,9 +45,9 @@ function buscaCep(tipo) {
 			console.log(data);
 			if (tipo == "cep") {
 				let li = ""
-				li += `<li class="collection-item adjust-list"><i class="material-icons">streetview</i> ${data.logradouro}</li>`
-				li += `<li class="collection-item adjust-list"><i class="material-icons">location_on</i> ${data.bairro}</li>`
-				li += `<li class="collection-item adjust-list"><i class="material-icons">location_city</i> ${data.localidade}</li>`
+				li += `<li class="collection-item adjust-list item-top"><i class="material-icons">streetview</i> ${data.logradouro}</li>`
+				li += `<li class="collection-item adjust-list item-middle"><i class="material-icons">location_on</i> ${data.bairro}</li>`
+				li += `<li class="collection-item adjust-list item-bottom"><i class="material-icons">location_city</i> ${data.localidade}</li>`
 				setTimeout(() => {
 					$('.progress').hide()
 					$("#resultado").html(li)
@@ -55,10 +55,10 @@ function buscaCep(tipo) {
 			} else {
 				let lis = ""
 				for (let rua of data) {
-					lis += `<li class="collection-item adjust-list"><i class="material-icons">thumb_up</i> ${rua.cep}</li>`
-					lis += `<li class="collection-item adjust-list"><i class="material-icons">streetview</i> ${rua.logradouro}</li>`
-					lis += `<li class="collection-item adjust-list"><i class="material-icons">location_on</i> ${rua.bairro}</li>`
-					lis += `<li class="collection-item adjust-list"><i class="material-icons">location_city</i> ${rua.localidade}</li>`
+					lis += `<li class="collection-item adjust-list item-top"><i class="material-icons">thumb_up</i> ${rua.cep}</li>`
+					lis += `<li class="collection-item adjust-list item-middle"><i class="material-icons">streetview</i> ${rua.logradouro}</li>`
+					lis += `<li class="collection-item adjust-list item-middle"><i class="material-icons">location_on</i> ${rua.bairro}</li>`
+					lis += `<li class="collection-item adjust-list item-bottom"><i class="material-icons">location_city</i> ${rua.localidade}</li>`
 					lis += `<li><span style="width: 100%;display: flex;justify-content: center;">● ● ●</span></li>`
 				}
 				setTimeout(() => {
@@ -82,7 +82,10 @@ function mountLog() {
 	let logs = JSON.parse(localStorage.getItem('logs'))
 	let logsList = ""
 	for (let log of logs) {
-		logsList += `<li class="collection-item item-log">${log.date} buscou ${log.log}<a href="#"><i style="color:#ee6e73" onclick="logLoad('${log.log.split('buscou ')}')" class="material-icons">visibility</i></a></li>`
+		logsList += `<li class="collection-item item-log">${log.date} <br>buscou ${log.log}<a href="#"><i style="color: #ee6e73;
+    font-size: 33px;
+    margin-left: -6px;
+    margin-right: 2px;" onclick="logLoad('${log.log.split('buscou ')}')" class="material-icons">visibility</i></a></li>`
 	}
 	$("#resultado").html(logsList)
 }
@@ -90,10 +93,10 @@ function mountLog() {
 function getDate() {
 	const dataAtual = new Date();
 	const options = {
-		weekday: 'short',
+		weekday: 'long',
 		year: 'numeric',
-		month: '2-digit',
-		day: '2-digit',
+		month: 'long',
+		day: 'numeric',
 		hour: 'numeric',
 		minute: 'numeric',
 		second: 'numeric'

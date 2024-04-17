@@ -10,7 +10,7 @@ body>nav>div>ul {
 .tabs>li>a.active {
 	font-size: 20px;
 	font-family: 'Audiowide', cursive;
-	font-weigth: bolder;
+	font-weight: bolder;
 }
 
 h5 {
@@ -58,7 +58,35 @@ h5 {
 
 .item-log{
 	display: flex;
-	gap: 7px;
+	gap: 10px;
 	justify-content: start;
 	flex-direction: row-reverse;
+	align-items: center;
+	border: 1px solid lightgrey;
+	border-radius: 9px;
+	margin-bottom: 8px !important;
+	box-shadow: -1px 0px 5px lightgray;
+}
+
+.item-top{
+	border-left: solid 1px lightgrey;
+	border-top: solid 1px lightgrey;
+	border-right: solid 1px lightgrey;
+	border-radius: 6px 6px 0px 0px;
+}
+
+.item-middle{
+	border-left: solid 1px lightgrey;
+	border-right: solid 1px lightgrey;
+}
+
+.item-bottom{
+	border-left: solid 1px lightgrey;
+	border-right: solid 1px lightgrey;
+	border-bottom: solid 1px lightgrey !important;
+	border-radius: 0px 0px 6px 6px;
+}
+
+ul.collection{
+	border: none
 }
