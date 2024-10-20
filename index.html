@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Busca CEP</title>
-	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<!-- FONTES  -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,24 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<!-- LINK DOS ICONES -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="manifest"  href="/manifest.json">
+
+	<!-- Arquivo: index.html -->
+
+<script>
+	if('serviceWorker' in navigator){
+		window.addEventListener('load', function(){
+			navigator.serviceWorker.register('/sw.js').then(function(registration){
+				console.log('Service workwer foi registrado', registration)
+			})
+		}).catch(function(err){
+			console.error('Erro ao registrar o service worker', err)
+		})
+	}
+</script>
+
+	
+	
 </head>
 
 <body>
@@ -140,8 +158,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"
 		integrity="sha512-efAcjYoYT0sXxQRtxGY37CKYmqsFVOIwMApaEbrxJr4RwqVVGw8o+Lfh/+59TU07+suZn1BWq4fDl5fdgyCNkw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<!-- Inicialização do js do materiliaze -->
+	<script src="js/init.js"></script> 
+	<!-- Busca cep -->
+	<script src="js/logic/busca-cep.js"></script>
+	<!-- Log Load -->
+	<script src="js/logic/log-load.js"></script>
+	<!-- Busca UF -->
+	<script src="js/logic/busca-uf.js"></script>
+	<!-- Busca UF -->
+	<script src="js/logic/valid-cep.js"></script>
 	<!-- SCRIPT LOCAL -->
-	<script src="script.js"></script>
+	<script src="js/script.js"></script>
+
 </body>
 
 </html>

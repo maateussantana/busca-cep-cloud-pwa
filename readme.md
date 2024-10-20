@@ -37,5 +37,7 @@ Um PWA (Progressive Web App) é um tipo de aplicativo web que utiliza tecnologia
 
 Em resumo, os PWAs combinam o melhor dos dois mundos: a acessibilidade e a facilidade de desenvolvimento da web com a funcionalidade e a experiência do usuário de um aplicativo nativo. Isso os torna uma escolha atraente para muitas empresas que desejam alcançar um público amplo com uma experiência de usuário de alta qualidade.
 
-### NUVEM DA W3SCHOOLS
-#### Após implementar as mudanças solicitadas, migrar o projeto do replit para o space dentro do W3School colocando um nome adquequado para o projeto que será o mesmo usado na URL do seu site. https://spaces.w3schools.com/
+### NUVEM DA NETLIFY
+#### Após implementar as mudanças solicitadas, migrar o projeto do replit para o space dentro ...
+
+## COMO FAZER (PASSO A PASSO)
